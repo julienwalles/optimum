@@ -7,10 +7,8 @@
 	<h1><?php the_title(); ?></h1>
 	<?php the_content(); ?>
 
-	<aside class="col-md-4 sidebar">
-		<ul>
-			<?php dynamic_sidebar('homepage'); ?>
-		</ul>
+	<aside class="col-md-3 bg-light">	
+			<?php get_sidebar('homepage'); ?>	
 	</aside>
 </div>
 <?php get_footer(); ?>

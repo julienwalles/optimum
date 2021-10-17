@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package bookings
  * @version 1.0.0
@@ -8,6 +9,8 @@ Description: ceci est mon plugin de reservation
 Author: WALLES Julien
 Version: 1.0
 */
+
+include('inc/widget-upcoming-bookings.php' );
 
 define( 'ROOT', plugins_url( '', __FILE__ ) );
 define( 'IMAGES', ROOT . '/images/' );
@@ -261,7 +264,8 @@ add_action( 'save_post', 'uep_save_booking_info' );
 
 // ajout de colonnes personnalisées dans le PostAdmin
 
-function uep_custom_columns_head( $defaults ) {
+function uep_custom_columns_head( $defaults ) 
+{
     unset( $defaults['date'] );
  
     $defaults['booking_start_date'] = __( 'Start Date', 'uep' );
@@ -277,12 +281,12 @@ function uep_custom_columns_content( $column_name, $post_id )
 {
     if ( 'booking_start_date' == $column_name ) {
         $start_date = get_post_meta( $post_id, 'booking-start-date', true );
-        echo date( 'F d, Y', $start_date );
+        echo date( 'g:i', $start_date );
     }
  
     if ( 'booking_end_date' == $column_name ) {
         $end_date = get_post_meta( $post_id, 'booking-end-date', true );
-        echo date( 'F d, Y', $end_date );
+        echo date( 'g:i', $end_date );
     }
  
     if ( 'booking_venue' == $column_name ) {
@@ -291,6 +295,3 @@ function uep_custom_columns_content( $column_name, $post_id )
     }
 }
 add_action( 'manage_booking_posts_custom_column', 'uep_custom_columns_content', 10, 2 );
-
-
-include('inc/widget-upcoming-bookings.php' );

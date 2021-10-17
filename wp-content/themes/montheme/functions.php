@@ -21,6 +21,7 @@ add_theme_support( 'title-tag' );
 // add_action ("wp_enqueue_scripts", 'optimum_add_style');
 
 /***********************************************************************************/
+
 function optimum_add_style() 
 {
     wp_enqueue_style('style', get_stylesheet_uri() );
@@ -31,8 +32,9 @@ array('jquery'), false, true);
 add_action ("wp_enqueue_scripts", 'optimum_add_style');
 
 /**************************************************************************************/
+
 // ajouter un menu 
-function add_menu () 
+function add_menu() 
 {
     register_nav_menu('header', __('en-tête menu'));
 }
@@ -40,6 +42,7 @@ add_action( 'init', 'add_menu' );
 
 
 /*************************************************************************************/
+
 function montheme_menu_class($classes) 
 {
     $classes[] = 'nav-item';
@@ -49,6 +52,7 @@ add_filter('nav_menu_css_class', 'montheme_menu_class');
 
 
 /**************************************************************************************/
+
 function montheme_menu_link_class($atts) 
 {
     $atts[] = 'nav-link';
@@ -58,15 +62,23 @@ add_filter('nav_menu_css_class', 'montheme_menu_link_class');
 
 
 /***************************************************************************************/
-register_sidebar([
-    'id' => 'homepage',
-    'name' => 'Sidebar Accueil'
-]);
 
+function montheme_sidebar() 
+{
+    register_sidebar([
+        'id' => 'homepage',
+        'name' => 'Sidebar Accueil'
+    ]);
+}
+add_action ('init', 'montheme_sidebar');
 
 /*****************************************************************************************/
-function  register_navwalker () 
+
+function  register_navwalker() 
 {   
-    require_once  get_template_directory(). './class-wp-bootstrap-navwalker.php' ;    
+    require_once  get_template_directory(). '/class-wp-bootstrap-navwalker.php' ;    
 }
 add_action ( 'after_setup_theme' , 'register_navwalker' );
+
+
+/********************************************************************************************/

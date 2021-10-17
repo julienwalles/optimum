@@ -15,7 +15,6 @@
           Publié le <?php the_date(); ?>
           par <?php the_author(); ?>
           Dans la catégorie <?php the_category(); ?>
-          Avec les étiquettes <?php the_tags(); ?>
         </p>
       </div>
 
@@ -25,4 +24,10 @@
     </article>
 
   <?php endwhile; endif; ?>
+
+  <aside class="site__sidebar">
+    <ul>
+        <?php dynamic_sidebar( 'homepage' ); ?>
+    </ul>
+</aside>
 <?php get_footer(); ?>
